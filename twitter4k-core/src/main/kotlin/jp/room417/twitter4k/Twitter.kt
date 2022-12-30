@@ -1,5 +1,7 @@
 package jp.room417.twitter4k
 
+import jp.room417.twitter4k.api.TimelinesResources
+import jp.room417.twitter4k.api.TimelinesResourcesImpl
 import jp.room417.twitter4k.auth.OAuthSupport
 import jp.room417.twitter4k.util.letWith
 import kotlinx.coroutines.Dispatchers
@@ -9,6 +11,8 @@ import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
 
 interface Twitter : OAuthSupport {
+    fun timelines(): TimelinesResources
+
     @Suppress("unused")
     class Builder(
         private var consumerKey: String?, private var consumerSecret: String?
@@ -32,6 +36,8 @@ interface Twitter : OAuthSupport {
 }
 
 internal class TwitterImpl(internal val twitter: twitter4j.Twitter) : Twitter {
+    override fun timelines() = TimelinesResourcesImpl(twitter)
+
     // OAuthSupport
     override fun setOAuthConsumer(consumerKey: String, consumerSecret: String) =
         twitter.setOAuthConsumer(consumerKey, consumerSecret)
