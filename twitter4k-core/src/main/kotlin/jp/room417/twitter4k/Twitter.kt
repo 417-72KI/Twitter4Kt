@@ -2,6 +2,8 @@ package jp.room417.twitter4k
 
 import jp.room417.twitter4k.api.TimelinesResources
 import jp.room417.twitter4k.api.TimelinesResourcesImpl
+import jp.room417.twitter4k.api.TweetsResources
+import jp.room417.twitter4k.api.TweetsResourcesImpl
 import jp.room417.twitter4k.auth.OAuthSupport
 import jp.room417.twitter4k.util.letWith
 import kotlinx.coroutines.Dispatchers
@@ -12,16 +14,21 @@ import twitter4j.auth.RequestToken
 
 interface Twitter : OAuthSupport {
     fun timelines(): TimelinesResources
+    fun tweets(): TweetsResources
 
     @Suppress("unused")
     class Builder(
-        private var consumerKey: String?, private var consumerSecret: String?
+        private var consumerKey: String?,
+        private var consumerSecret: String?
     ) {
         constructor() : this(null, null)
 
         private val factory = TwitterFactory()
 
-        fun setOAuthConsumer(consumerKey: String, consumerSecret: String): Builder {
+        fun setOAuthConsumer(
+            consumerKey: String,
+            consumerSecret: String
+        ): Builder {
             this.consumerKey = consumerKey
             this.consumerSecret = consumerSecret
             return this
@@ -37,10 +44,16 @@ interface Twitter : OAuthSupport {
 
 internal class TwitterImpl(internal val twitter: twitter4j.Twitter) : Twitter {
     override fun timelines() = TimelinesResourcesImpl(twitter)
+    override fun tweets() = TweetsResourcesImpl(twitter)
 
     // OAuthSupport
-    override fun setOAuthConsumer(consumerKey: String, consumerSecret: String) =
-        twitter.setOAuthConsumer(consumerKey, consumerSecret)
+    override fun setOAuthConsumer(
+        consumerKey: String,
+        consumerSecret: String
+    ) = twitter.setOAuthConsumer(
+        consumerKey,
+        consumerSecret
+    )
 
     override suspend fun getOAuthRequestToken(callbackURL: String): RequestToken =
         withContext(Dispatchers.IO) {
@@ -51,7 +64,10 @@ internal class TwitterImpl(internal val twitter: twitter4j.Twitter) : Twitter {
         callbackURL: String,
         xAuthAccessType: String
     ): RequestToken = withContext(Dispatchers.IO) {
-        twitter.getOAuthRequestToken(callbackURL, xAuthAccessType)
+        twitter.getOAuthRequestToken(
+            callbackURL,
+            xAuthAccessType
+        )
     }
 
     override suspend fun getOAuthRequestToken(
@@ -59,7 +75,11 @@ internal class TwitterImpl(internal val twitter: twitter4j.Twitter) : Twitter {
         xAuthAccessType: String,
         xAuthMode: String
     ): RequestToken = withContext(Dispatchers.IO) {
-        twitter.getOAuthRequestToken(callbackURL, xAuthAccessType, xAuthMode)
+        twitter.getOAuthRequestToken(
+            callbackURL,
+            xAuthAccessType,
+            xAuthMode
+        )
     }
 
     override suspend fun getOAuthAccessToken(): AccessToken = withContext(Dispatchers.IO) {
@@ -80,12 +100,21 @@ internal class TwitterImpl(internal val twitter: twitter4j.Twitter) : Twitter {
         requestToken: RequestToken,
         oauthVerifier: String
     ): AccessToken = withContext(Dispatchers.IO) {
-        twitter.getOAuthAccessToken(requestToken, oauthVerifier)
+        twitter.getOAuthAccessToken(
+            requestToken,
+            oauthVerifier
+        )
     }
 
-    override suspend fun getOAuthAccessToken(screenName: String, password: String): AccessToken =
+    override suspend fun getOAuthAccessToken(
+        screenName: String,
+        password: String
+    ): AccessToken =
         withContext(Dispatchers.IO) {
-            twitter.getOAuthAccessToken(screenName, password)
+            twitter.getOAuthAccessToken(
+                screenName,
+                password
+            )
         }
 
     override suspend fun setOAuthAccessToken(accessToken: AccessToken) =
