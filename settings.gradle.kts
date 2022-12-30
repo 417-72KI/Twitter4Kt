@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "twitter4k"
-include("lib")
+include("twitter4k-core")
