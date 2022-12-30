@@ -42,7 +42,7 @@ interface Twitter : OAuthSupport {
     }
 }
 
-internal class TwitterImpl(internal val twitter: twitter4j.Twitter) : Twitter {
+internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override fun timelines() = TimelinesResourcesImpl(twitter)
     override fun tweets() = TweetsResourcesImpl(twitter)
 
