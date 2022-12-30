@@ -16,12 +16,13 @@ interface Twitter : OAuthSupport {
     fun timelines(): TimelinesResources
     fun tweets(): TweetsResources
 
-    @Suppress("unused")
+    @Suppress("unused", "MemberVisibilityCanBePrivate")
     class Builder(
         private var consumerKey: String?,
-        private var consumerSecret: String?
+        private var consumerSecret: String?,
+        private var accessToken: AccessToken?
     ) {
-        constructor() : this(null, null)
+        constructor() : this(null, null, null)
 
         private val factory = TwitterFactory()
 
@@ -34,9 +35,20 @@ interface Twitter : OAuthSupport {
             return this
         }
 
+        fun setOAuthAccessToken(accessToken: AccessToken): Builder {
+            this.accessToken = accessToken
+            return this
+        }
+
+        fun setOAuthAccessToken(token: String, tokenSecret: String) =
+            setOAuthAccessToken(AccessToken(token, tokenSecret))
+
         fun build(): Twitter = TwitterImpl(factory.instance).apply {
             consumerKey?.letWith(consumerSecret) { key, secret ->
                 setOAuthConsumer(key, secret)
+            }
+            accessToken?.let {
+                setOAuthAccessToken(it)
             }
         }
     }
@@ -54,6 +66,10 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
         consumerKey,
         consumerSecret
     )
+
+    override suspend fun getOAuthRequestToken(): RequestToken = withContext(Dispatchers.IO) {
+        twitter.oAuthRequestToken
+    }
 
     override suspend fun getOAuthRequestToken(callbackURL: String): RequestToken =
         withContext(Dispatchers.IO) {
@@ -82,48 +98,32 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
         )
     }
 
-    override suspend fun getOAuthAccessToken(): AccessToken = withContext(Dispatchers.IO) {
-        twitter.oAuthAccessToken
-    }
+    override fun getOAuthAccessToken(): AccessToken = twitter.oAuthAccessToken
 
-    override suspend fun getOAuthAccessToken(oauthVerifier: String): AccessToken =
-        withContext(Dispatchers.IO) {
-            twitter.getOAuthAccessToken(oauthVerifier)
-        }
+    override fun getOAuthAccessToken(oauthVerifier: String): AccessToken =
+        twitter.getOAuthAccessToken(oauthVerifier)
 
-    override suspend fun getOAuthAccessToken(requestToken: RequestToken): AccessToken =
-        withContext(Dispatchers.IO) {
-            twitter.getOAuthAccessToken(requestToken)
-        }
+    override fun getOAuthAccessToken(requestToken: RequestToken): AccessToken =
+        twitter.getOAuthAccessToken(requestToken)
 
-    override suspend fun getOAuthAccessToken(
+    override fun getOAuthAccessToken(
         requestToken: RequestToken,
         oauthVerifier: String
-    ): AccessToken = withContext(Dispatchers.IO) {
-        twitter.getOAuthAccessToken(
-            requestToken,
-            oauthVerifier
-        )
-    }
+    ): AccessToken = twitter.getOAuthAccessToken(
+        requestToken,
+        oauthVerifier
+    )
 
-    override suspend fun getOAuthAccessToken(
+    override fun getOAuthAccessToken(
         screenName: String,
         password: String
-    ): AccessToken =
-        withContext(Dispatchers.IO) {
-            twitter.getOAuthAccessToken(
-                screenName,
-                password
-            )
-        }
+    ): AccessToken = twitter.getOAuthAccessToken(
+        screenName,
+        password
+    )
 
-    override suspend fun setOAuthAccessToken(accessToken: AccessToken) =
-        withContext(Dispatchers.IO) {
-            twitter.oAuthAccessToken = accessToken
-        }
-
-    override suspend fun getOAuthRequestToken(): RequestToken = withContext(Dispatchers.IO) {
-        twitter.oAuthRequestToken
+    override fun setOAuthAccessToken(accessToken: AccessToken) {
+        twitter.oAuthAccessToken = accessToken
     }
 }
 
