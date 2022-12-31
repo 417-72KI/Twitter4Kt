@@ -25,7 +25,8 @@ class SemanticVersion private constructor(
     }
 
     companion object {
-        val initial = SemanticVersion(0, 0, 0, "SNAPSHOT", null)
+        val initial
+            get() = SemanticVersion(0, 0, 0, "SNAPSHOT", null)
 
         fun from(str: String): SemanticVersion? {
             // https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
