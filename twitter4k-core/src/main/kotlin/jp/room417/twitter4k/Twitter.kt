@@ -107,29 +107,35 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
         )
     }
 
-    override fun getOAuthAccessToken(): AccessToken = twitter.oAuthAccessToken
+    override suspend fun getOAuthAccessToken(): AccessToken = withContext(Dispatchers.IO) { twitter.oAuthAccessToken }
 
-    override fun getOAuthAccessToken(oauthVerifier: String): AccessToken =
+    override suspend fun getOAuthAccessToken(oauthVerifier: String): AccessToken = withContext(Dispatchers.IO) {
         twitter.getOAuthAccessToken(oauthVerifier)
+    }
 
-    override fun getOAuthAccessToken(requestToken: RequestToken): AccessToken =
+    override suspend fun getOAuthAccessToken(requestToken: RequestToken): AccessToken = withContext(Dispatchers.IO) {
         twitter.getOAuthAccessToken(requestToken)
+    }
 
-    override fun getOAuthAccessToken(
+    override suspend fun getOAuthAccessToken(
         requestToken: RequestToken,
         oauthVerifier: String
-    ): AccessToken = twitter.getOAuthAccessToken(
-        requestToken,
-        oauthVerifier
-    )
+    ): AccessToken = withContext(Dispatchers.IO) {
+        twitter.getOAuthAccessToken(
+            requestToken,
+            oauthVerifier
+        )
+    }
 
-    override fun getOAuthAccessToken(
+    override suspend fun getOAuthAccessToken(
         screenName: String,
         password: String
-    ): AccessToken = twitter.getOAuthAccessToken(
-        screenName,
-        password
-    )
+    ): AccessToken = withContext(Dispatchers.IO) {
+        twitter.getOAuthAccessToken(
+            screenName,
+            password
+        )
+    }
 
     override fun setOAuthAccessToken(accessToken: AccessToken) {
         twitter.oAuthAccessToken = accessToken

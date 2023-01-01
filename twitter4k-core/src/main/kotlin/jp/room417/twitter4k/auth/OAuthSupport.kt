@@ -31,23 +31,23 @@ interface OAuthSupport {
 
     /** A wrapper of [twitter4j.auth.OAuthSupport.getOAuthAccessToken] */
     @Throws(TwitterException::class)
-    fun getOAuthAccessToken(): AccessToken
+    suspend fun getOAuthAccessToken(): AccessToken
 
     /** A wrapper of [twitter4j.auth.OAuthSupport.getOAuthAccessToken] */
     @Throws(TwitterException::class)
-    fun getOAuthAccessToken(oauthVerifier: String): AccessToken
+    suspend fun getOAuthAccessToken(oauthVerifier: String): AccessToken
 
     /** A wrapper of [twitter4j.auth.OAuthSupport.getOAuthAccessToken] */
     @Throws(TwitterException::class)
-    fun getOAuthAccessToken(requestToken: RequestToken): AccessToken
+    suspend fun getOAuthAccessToken(requestToken: RequestToken): AccessToken
 
     /** A wrapper of [twitter4j.auth.OAuthSupport.getOAuthAccessToken] */
     @Throws(TwitterException::class)
-    fun getOAuthAccessToken(requestToken: RequestToken, oauthVerifier: String): AccessToken
+    suspend fun getOAuthAccessToken(requestToken: RequestToken, oauthVerifier: String): AccessToken
 
     /** A wrapper of [twitter4j.auth.OAuthSupport.getOAuthAccessToken] */
     @Throws(TwitterException::class)
-    fun getOAuthAccessToken(screenName: String, password: String): AccessToken
+    suspend fun getOAuthAccessToken(screenName: String, password: String): AccessToken
 
     /** A wrapper of [twitter4j.auth.OAuthSupport.setOAuthAccessToken] */
     fun setOAuthAccessToken(accessToken: AccessToken)
