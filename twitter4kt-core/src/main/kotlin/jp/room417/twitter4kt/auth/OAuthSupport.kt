@@ -1,4 +1,4 @@
-package jp.room417.twitter4k.auth
+package jp.room417.twitter4kt.auth
 
 import twitter4j.TwitterException
 import twitter4j.auth.AccessToken

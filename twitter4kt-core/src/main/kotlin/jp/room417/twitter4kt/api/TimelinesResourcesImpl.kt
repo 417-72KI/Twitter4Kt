@@ -1,4 +1,4 @@
-package jp.room417.twitter4k.api
+package jp.room417.twitter4kt.api
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

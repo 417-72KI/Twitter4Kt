@@ -93,7 +93,7 @@ publishing {
         val describedVersion = createVersion(rootProject)
         create<MavenPublication>("maven") {
             groupId = "jp.room417"
-            artifactId = "twitter4k"
+            artifactId = "twitter4kt"
             version = describedVersion
             from(components["java"])
             artifact(javadocJar)
@@ -135,7 +135,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/417-72KI/Twitter4K")
+            url = uri("https://maven.pkg.github.com/417-72KI/Twitter4Kt")
             credentials {
                 username = rootProject.localProperties?.getProperty("gpr.user")
                     ?: rootProject.findProperty("gpr.user") as? String

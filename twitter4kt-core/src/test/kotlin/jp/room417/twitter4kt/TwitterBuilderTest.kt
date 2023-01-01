@@ -1,4 +1,4 @@
-package jp.room417.twitter4k
+package jp.room417.twitter4kt
 
 import kotlin.test.Test
 import kotlin.test.assertTrue

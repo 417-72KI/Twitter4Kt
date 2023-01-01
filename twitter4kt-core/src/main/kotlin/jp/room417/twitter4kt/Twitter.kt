@@ -1,11 +1,11 @@
-package jp.room417.twitter4k
+package jp.room417.twitter4kt
 
-import jp.room417.twitter4k.api.TimelinesResources
-import jp.room417.twitter4k.api.TimelinesResourcesImpl
-import jp.room417.twitter4k.api.TweetsResources
-import jp.room417.twitter4k.api.TweetsResourcesImpl
-import jp.room417.twitter4k.auth.OAuthSupport
-import jp.room417.twitter4k.util.letWith
+import jp.room417.twitter4kt.api.TimelinesResources
+import jp.room417.twitter4kt.api.TimelinesResourcesImpl
+import jp.room417.twitter4kt.api.TweetsResources
+import jp.room417.twitter4kt.api.TweetsResourcesImpl
+import jp.room417.twitter4kt.auth.OAuthSupport
+import jp.room417.twitter4kt.util.letWith
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import twitter4j.TwitterFactory
