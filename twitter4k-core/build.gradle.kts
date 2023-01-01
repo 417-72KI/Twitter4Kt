@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.6.21"
     `java-library`
     `maven-publish`
+    id("org.jetbrains.dokka") version "1.6.21"
 }
 
 repositories {
@@ -23,6 +24,17 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
 
+val sourceJar by tasks.creating(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets["main"].allSource)
+}
+
+val javadocJar by tasks.creating(Jar::class) {
+    dependsOn("dokkaJavadoc")
+    archiveClassifier.set("javadoc")
+    from(tasks.named("dokkaJavadoc"))
+}
+
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
@@ -31,15 +43,8 @@ tasks {
         kotlinOptions.jvmTarget = "1.8"
     }
 
-    val sourceJar by creating(Jar::class) {
-        archiveClassifier.set("sources")
-        from(sourceSets["main"].allSource)
-    }
-
-    val javadocJar by creating(Jar::class) {
-        dependsOn.add(javadoc)
-        archiveClassifier.set("javadoc")
-        from(javadoc)
+    dokkaJavadoc {
+        inputs.dir("src/main/kotlin")
     }
 
     artifacts {
@@ -90,7 +95,8 @@ publishing {
             groupId = "jp.room417"
             artifactId = "twitter4k"
             version = describedVersion
-            from(components["kotlin"])
+            from(components["java"])
+            artifact(javadocJar)
 
             // pom {
             //     withXml {
