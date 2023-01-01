@@ -12,8 +12,15 @@ import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
 
+/** A wrapper of [twitter4j.Twitter] */
 interface Twitter : OAuthSupport {
+    /** If an api that you want to use has not been wrapped yet, you can call the original api from here. */
+    val origin: twitter4j.Twitter
+
+    /** A wrapper of [twitter4j.Twitter.timelines] */
     fun timelines(): TimelinesResources
+
+    /** A wrapper of [twitter4j.Twitter.tweets] */
     fun tweets(): TweetsResources
 
     @Suppress("unused", "MemberVisibilityCanBePrivate")
@@ -55,6 +62,8 @@ interface Twitter : OAuthSupport {
 }
 
 internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
+    override val origin = twitter
+
     override fun timelines() = TimelinesResourcesImpl(twitter)
     override fun tweets() = TweetsResourcesImpl(twitter)
 
