@@ -80,7 +80,30 @@ dependencies {
 
 ### Gradle(Kotlin)
 
-TBD
+#### top-level `build.gradle.kts`
+
+```kotlin
+allprojects {
+    repositories {
+        ・ ・ ・
+        maven {
+            url = "https://maven.pkg.github.com/417-72KI/Twitter4Kt"
+            credentials {
+                username = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_USER")
+                password = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+```
+
+#### `app/build.gradle.kts`
+
+```kotlin
+dependencies {
+    implementation("jp.room417:twitter4kt:0.0.1")
+}
+```
 
 ## Usage example
 
