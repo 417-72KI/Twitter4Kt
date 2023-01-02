@@ -3,10 +3,10 @@ import version.localProperties
 import version.runCommand
 
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version Dependencies.Version.kotlin
+    id("org.jetbrains.dokka") version Dependencies.Version.kotlin
     `java-library`
     `maven-publish`
-    id("org.jetbrains.dokka") version "1.7.20"
 }
 
 repositories {
@@ -16,9 +16,9 @@ repositories {
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation(Dependencies.kotlinCoroutines)
 
-    api("org.twitter4j:twitter4j-core:4.0.7")
+    api(Dependencies.twitter4j)
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
