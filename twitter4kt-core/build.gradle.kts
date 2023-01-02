@@ -3,10 +3,10 @@ import version.localProperties
 import version.runCommand
 
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.8.0"
     `java-library`
     `maven-publish`
-    id("org.jetbrains.dokka") version "1.6.21"
+    id("org.jetbrains.dokka") version "1.7.20"
 }
 
 repositories {
