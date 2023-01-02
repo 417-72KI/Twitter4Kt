@@ -41,8 +41,8 @@ class SemanticVersion private constructor(
                 groupValues[1].toInt(),
                 groupValues[2].toInt(),
                 groupValues[3].toInt(),
-                groupValues[4],
-                groupValues[5]
+                groupValues[4].ifBlank { null },
+                groupValues[5].ifBlank { null }
             )
         }
     }
