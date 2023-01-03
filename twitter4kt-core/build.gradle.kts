@@ -1,7 +1,3 @@
-import version.createVersion
-import version.localProperties
-import version.runCommand
-
 plugins {
     kotlin("jvm") version Dependencies.Version.kotlin
     id("org.jetbrains.dokka") version Dependencies.Version.kotlin

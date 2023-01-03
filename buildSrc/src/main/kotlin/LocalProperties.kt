@@ -1,5 +1,3 @@
-package version
-
 import org.gradle.api.Project
 import java.io.File
 import java.util.*
