@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version Dependencies.Version.kotlin
     id("org.jetbrains.dokka") version Dependencies.Version.kotlin
+    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     `java-library`
     `maven-publish`
 }
@@ -18,6 +19,17 @@ dependencies {
 
     testImplementation(TestDependencies.kotlinTest)
     testImplementation(TestDependencies.kotlinTestJunit)
+}
+
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    arrayOf(
+        "import-ordering",
+        "no-wildcard-imports"
+    ).forEach(disabledRules::add)
+    reporters {
+        ignoreFailures.set(true)
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+    }
 }
 
 val sourceJar by tasks.creating(Jar::class) {
