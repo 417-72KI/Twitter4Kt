@@ -14,14 +14,14 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(platform(Dependencies.kotlinBom))
+    implementation(Dependencies.kotlinStdlib)
     implementation(Dependencies.kotlinCoroutines)
 
     api(Dependencies.twitter4j)
 
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation(TestDependencies.kotlinTest)
+    testImplementation(TestDependencies.kotlinTestJunit)
 }
 
 val sourceJar by tasks.creating(Jar::class) {
@@ -37,10 +37,10 @@ val javadocJar by tasks.creating(Jar::class) {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = Dependencies.Version.jvmTarget
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = Dependencies.Version.jvmTarget
     }
 
     dokkaJavadoc {
