@@ -32,7 +32,7 @@ danger(args) {
         }
     }
     path.forEachDirectoryEntryRecursive(glob = "**/build/reports/ktlint/**/ktlint*.xml") {
-        println("TODO: parse $it")
+        warn("TODO: parse `$it`")
     }
 
     path.forEachDirectoryEntryRecursive(glob = "**/build/test-results/*/*.xml") {
