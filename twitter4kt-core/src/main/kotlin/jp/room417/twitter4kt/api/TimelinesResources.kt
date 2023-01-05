@@ -5,7 +5,6 @@ import twitter4j.ResponseList
 import twitter4j.Status
 import twitter4j.TwitterException
 
-
 /** A wrapper of [twitter4j.api.TimelinesResources] */
 interface TimelinesResources {
     /** A wrapper of [twitter4j.api.TimelinesResources.getMentionsTimeline] */

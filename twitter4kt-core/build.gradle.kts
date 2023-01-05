@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version Dependencies.Version.kotlin
     id("org.jetbrains.dokka") version Dependencies.Version.kotlin
+    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     `java-library`
     `maven-publish`
 }
@@ -18,6 +19,17 @@ dependencies {
 
     testImplementation(TestDependencies.kotlinTest)
     testImplementation(TestDependencies.kotlinTestJunit)
+}
+
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    arrayOf(
+        "import-ordering",
+        "no-wildcard-imports"
+    ).forEach(disabledRules::add)
+    reporters {
+        ignoreFailures.set(true)
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+    }
 }
 
 val sourceJar by tasks.creating(Jar::class) {
@@ -71,9 +83,9 @@ tasks.register("createTagFromVersion") {
         }
         val versionList = "git tag".runCommand().output.split("\n")
         if (versionList.contains(version))
-            throw GradleException("`${version}` already exists.")
+            throw GradleException("`$version` already exists.")
 
-        println("set tag for `${version}`")
+        println("set tag for `$version`")
 
         "git tag $version main".runCommand().exitCode.let {
             if (it != 0) throw GradleException("invalid return code on `git tag`: $it")
@@ -134,11 +146,9 @@ publishing {
             url = uri("https://maven.pkg.github.com/417-72KI/Twitter4Kt")
             credentials {
                 username = rootProject.localProperties?.getProperty("gpr.user")
-                    ?: rootProject.findProperty("gpr.user") as? String
-                        ?: System.getenv("GITHUB_USER")
+                    ?: System.getenv("GITHUB_USER")
                 password = rootProject.localProperties?.getProperty("gpr.key")
-                    ?: rootProject.findProperty("gpr.key") as? String
-                        ?: System.getenv("GITHUB_TOKEN")
+                    ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }

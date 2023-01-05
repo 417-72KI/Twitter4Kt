@@ -3,5 +3,6 @@
 .vscode
 build
 bin
+danger_out.json
 local.properties
 /build.gradle
