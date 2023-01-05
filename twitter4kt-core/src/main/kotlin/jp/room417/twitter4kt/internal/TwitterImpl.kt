@@ -1,10 +1,7 @@
 package jp.room417.twitter4kt.internal
 
 import jp.room417.twitter4kt.Twitter
-import jp.room417.twitter4kt.api.internal.SearchResourceImpl
-import jp.room417.twitter4kt.api.internal.TimelinesResourcesImpl
-import jp.room417.twitter4kt.api.internal.TweetsResourcesImpl
-import jp.room417.twitter4kt.api.internal.UsersResourcesImpl
+import jp.room417.twitter4kt.api.internal.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import twitter4j.auth.AccessToken
@@ -16,6 +13,7 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override fun timelines() = TimelinesResourcesImpl(twitter)
     override fun tweets() = TweetsResourcesImpl(twitter)
     override fun search() = SearchResourceImpl(twitter)
+    override fun directMessages() = DirectMessagesResourcesImpl(twitter)
     override fun users() = UsersResourcesImpl(twitter)
 
     // OAuthSupport

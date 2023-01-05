@@ -1,9 +1,6 @@
 package jp.room417.twitter4kt
 
-import jp.room417.twitter4kt.api.SearchResource
-import jp.room417.twitter4kt.api.TimelinesResources
-import jp.room417.twitter4kt.api.TweetsResources
-import jp.room417.twitter4kt.api.UsersResources
+import jp.room417.twitter4kt.api.*
 import jp.room417.twitter4kt.auth.OAuthSupport
 import jp.room417.twitter4kt.internal.TwitterImpl
 import jp.room417.twitter4kt.util.letWith
@@ -23,6 +20,9 @@ interface Twitter : OAuthSupport {
 
     /** A wrapper of [twitter4j.Twitter.search] */
     fun search(): SearchResource
+
+    /** A wrapper of [twitter4j.Twitter.directMessages] */
+    fun directMessages(): DirectMessagesResources
 
     /** A wrapper of [twitter4j.Twitter.users] */
     fun users(): UsersResources
