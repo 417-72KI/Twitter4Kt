@@ -1,5 +1,6 @@
-package jp.room417.twitter4kt.api
+package jp.room417.twitter4kt.api.internal
 
+import jp.room417.twitter4kt.api.TimelinesResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import twitter4j.Paging
@@ -7,7 +8,7 @@ import twitter4j.ResponseList
 import twitter4j.Status
 import twitter4j.Twitter
 
-class TimelinesResourcesImpl(private val twitter: Twitter) : TimelinesResources {
+internal class TimelinesResourcesImpl(private val twitter: Twitter) : TimelinesResources {
     override suspend fun getMentionsTimeline(): ResponseList<Status> =
         withContext(Dispatchers.IO) {
             twitter.mentionsTimeline

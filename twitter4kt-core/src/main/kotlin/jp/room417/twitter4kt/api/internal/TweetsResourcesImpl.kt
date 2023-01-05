@@ -1,12 +1,13 @@
-package jp.room417.twitter4kt.api
+package jp.room417.twitter4kt.api.internal
 
+import jp.room417.twitter4kt.api.TweetsResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import twitter4j.*
 import java.io.File
 import java.io.InputStream
 
-class TweetsResourcesImpl(private val twitter: Twitter) : TweetsResources {
+internal class TweetsResourcesImpl(private val twitter: Twitter) : TweetsResources {
     override suspend fun getRetweets(statusId: Long): ResponseList<Status> =
         withContext(Dispatchers.IO) {
             twitter.getRetweets(statusId)
