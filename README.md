@@ -78,7 +78,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'jp.room417:twitter4kt:0.0.1'
+    implementation 'jp.room417:twitter4kt:0.0.3'
 }
 ```
 
@@ -105,7 +105,7 @@ allprojects {
 
 ```kotlin
 dependencies {
-    implementation("jp.room417:twitter4kt:0.0.1")
+    implementation("jp.room417:twitter4kt:0.0.3")
 }
 ```
 
