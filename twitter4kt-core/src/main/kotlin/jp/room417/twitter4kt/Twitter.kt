@@ -1,9 +1,9 @@
 package jp.room417.twitter4kt
 
 import jp.room417.twitter4kt.api.TimelinesResources
-import jp.room417.twitter4kt.api.TimelinesResourcesImpl
 import jp.room417.twitter4kt.api.TweetsResources
-import jp.room417.twitter4kt.api.TweetsResourcesImpl
+import jp.room417.twitter4kt.api.internal.TimelinesResourcesImpl
+import jp.room417.twitter4kt.api.internal.TweetsResourcesImpl
 import jp.room417.twitter4kt.auth.OAuthSupport
 import jp.room417.twitter4kt.util.letWith
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +61,7 @@ interface Twitter : OAuthSupport {
     }
 }
 
+// Implement
 internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override val origin = twitter
 
