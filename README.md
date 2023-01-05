@@ -1,4 +1,5 @@
 # Twitter4Kt
+![publish](https://github.com/417-72KI/Twitter4Kt/actions/workflows/publish.yml/badge.svg)
 
 Twitter4Kt is a wrapper for [`Twitter4J`](https://github.com/Twitter4J/Twitter4J) to support Kotlin Coroutines.
 
@@ -12,7 +13,7 @@ If using Twitter4Kt instead of Twitter4J directly, you needs no more calling Twi
 ### Before
 
 ```kotlin
-viewModelScope.launch {
+scope.launch {
     prepare()
     withContext(Dispatchers.IO) {
         try {
@@ -36,7 +37,7 @@ viewModelScope.launch {
 ### After
 
 ```kotlin
-viewModelScope.launch {
+scope.launch {
     prepare()
     try {
         twitter.updateStatus(text)
@@ -48,6 +49,9 @@ viewModelScope.launch {
     }
 }
 ```
+
+### **Note**
+Since not all of apis is supporting, PRs are welcome.
 
 ## Installation
 
