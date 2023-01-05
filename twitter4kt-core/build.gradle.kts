@@ -21,9 +21,9 @@ dependencies {
     testImplementation(TestDependencies.kotlinTestJunit)
 }
 
-configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+ktlint {
+    version.set(Dependencies.Version.ktlint)
     arrayOf(
-        "import-ordering",
         "no-wildcard-imports"
     ).forEach(disabledRules::add)
     reporters {
