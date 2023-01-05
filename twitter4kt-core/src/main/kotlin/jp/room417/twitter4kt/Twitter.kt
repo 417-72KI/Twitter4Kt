@@ -141,4 +141,3 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
         twitter.oAuthAccessToken = accessToken
     }
 }
-
