@@ -1,7 +1,7 @@
 plugins {
-    kotlin("jvm") version Dependencies.Version.kotlin
-    id("org.jetbrains.dokka") version Dependencies.Version.kotlin
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    kotlin("jvm") version Plugins.Version.kotlin
+    id(Plugins.dokka) version Plugins.Version.dokka
+    id(Plugins.ktlint) version Plugins.Version.ktlint
     `java-library`
     `maven-publish`
 }
