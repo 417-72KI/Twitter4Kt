@@ -39,4 +39,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Publish
-        run: ./gradlew printVersion assemble publish
+        run: ./gradlew clean printVersion test assemble publish
