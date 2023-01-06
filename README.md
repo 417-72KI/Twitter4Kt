@@ -1,5 +1,6 @@
 # Twitter4Kt
 ![publish](https://github.com/417-72KI/Twitter4Kt/actions/workflows/publish.yml/badge.svg)
+<!--[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.417-72ki/twitter4kt/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.417-72ki/twitter4kt)-->
 
 Twitter4Kt is a wrapper for [`Twitter4J`](https://github.com/Twitter4J/Twitter4J) to support Kotlin Coroutines.
 
