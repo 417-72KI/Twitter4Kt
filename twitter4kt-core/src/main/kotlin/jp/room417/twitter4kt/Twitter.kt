@@ -24,8 +24,35 @@ interface Twitter : OAuthSupport {
     /** A wrapper of [twitter4j.Twitter.directMessages] */
     fun directMessages(): DirectMessagesResources
 
+    /** A wrapper of [twitter4j.Twitter.friendsFollowers] */
+    // fun friendsFollowers(): FriendsFollowersResources
+
     /** A wrapper of [twitter4j.Twitter.users] */
     fun users(): UsersResources
+
+    /** A wrapper of [twitter4j.Twitter.suggestedUsers] */
+    // fun suggestedUsers(): SuggestedUsersResources
+
+    /** A wrapper of [twitter4j.Twitter.favorites] */
+    // fun favorites(): FavoritesResources
+
+    /** A wrapper of [twitter4j.Twitter.list] */
+    // fun list(): ListsResources
+
+    /** A wrapper of [twitter4j.Twitter.savedSearches] */
+    // fun savedSearches(): SavedSearchesResources
+
+    /** A wrapper of [twitter4j.Twitter.placesGeo] */
+    // fun placesGeo(): PlacesGeoResources
+
+    /** A wrapper of [twitter4j.Twitter.trends] */
+    // fun trends(): TrendsResources
+
+    /** A wrapper of [twitter4j.Twitter.spamReporting] */
+    // fun spamReporting(): SpamReportingResource
+
+    /** A wrapper of [twitter4j.Twitter.help] */
+    // fun help(): HelpResources
 
     @Suppress("unused", "MemberVisibilityCanBePrivate")
     class Builder(
