@@ -49,7 +49,7 @@ interface Twitter : OAuthSupport {
     fun trends(): TrendsResources
 
     /** A wrapper of [twitter4j.Twitter.spamReporting] */
-    // fun spamReporting(): SpamReportingResource
+    fun spamReporting(): SpamReportingResource
 
     /** A wrapper of [twitter4j.Twitter.help] */
     // fun help(): HelpResources
