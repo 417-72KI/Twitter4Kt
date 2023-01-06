@@ -7,7 +7,6 @@ import twitter4j.ResponseList
 import twitter4j.SavedSearch
 import twitter4j.Twitter
 
-
 internal class SavedSearchesResourcesImpl(private val twitter: Twitter) : SavedSearchesResources {
     override suspend fun getSavedSearches(): ResponseList<SavedSearch> = withContext(Dispatchers.IO) {
         twitter.savedSearches
