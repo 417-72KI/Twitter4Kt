@@ -8,7 +8,7 @@ import twitter4j.ResponseList
 import twitter4j.Status
 import twitter4j.Twitter
 
-class FavoritesResourcesImpl(private val twitter: Twitter) : FavoritesResources {
+internal class FavoritesResourcesImpl(private val twitter: Twitter) : FavoritesResources {
     override suspend fun getFavorites(): ResponseList<Status> = withContext(Dispatchers.IO) { twitter.favorites }
 
     override suspend fun getFavorites(userId: Long): ResponseList<Status> =
