@@ -50,9 +50,6 @@ scope.launch {
 }
 ```
 
-### **Note**
-Since not all of apis is supporting, PRs are welcome.
-
 ## Installation
 
 **NOTE**
@@ -60,8 +57,11 @@ Since `0.1.0`, the artifact will be deployed on Maven Central, and the credentia
 Instead, the group ID will be changed while package names in modules are not modified.
 
 ### Gradle(Groovy)
+#### >= `v0.1.0`
+TBD
 
-#### top-level `build.gradle`
+#### <= `v0.0.5`
+##### top-level `build.gradle`
 
 ```groovy
 allprojects {
@@ -78,7 +78,7 @@ allprojects {
 }
 ```
 
-#### `app/build.gradle`
+##### `app/build.gradle`
 
 ```groovy
 dependencies {
@@ -87,8 +87,10 @@ dependencies {
 ```
 
 ### Gradle(Kotlin)
-
-#### top-level `build.gradle.kts`
+#### >= `v0.1.0`
+TBD
+#### <== `v0.0.5`
+##### top-level `build.gradle.kts`
 
 ```kotlin
 allprojects {
@@ -105,7 +107,7 @@ allprojects {
 }
 ```
 
-#### `app/build.gradle.kts`
+##### `app/build.gradle.kts`
 
 ```kotlin
 dependencies {
