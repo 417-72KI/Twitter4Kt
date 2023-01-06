@@ -23,7 +23,7 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override fun placesGeo() = PlacesGeoResourcesImpl(twitter)
     override fun trends() = TrendsResourcesImpl(twitter)
     override fun spamReporting() = SpamReportingResourceImpl(twitter)
-    // override fun help() = HelpResourcesImpl(twitter)
+    override fun help() = HelpResourcesImpl(twitter)
 
     // OAuthSupport
     override fun setOAuthConsumer(

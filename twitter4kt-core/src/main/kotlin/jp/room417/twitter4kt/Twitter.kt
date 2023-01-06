@@ -52,7 +52,7 @@ interface Twitter : OAuthSupport {
     fun spamReporting(): SpamReportingResource
 
     /** A wrapper of [twitter4j.Twitter.help] */
-    // fun help(): HelpResources
+    fun help(): HelpResources
 
     /** A builder of [Twitter] instance. */
     @Suppress("unused", "MemberVisibilityCanBePrivate")
