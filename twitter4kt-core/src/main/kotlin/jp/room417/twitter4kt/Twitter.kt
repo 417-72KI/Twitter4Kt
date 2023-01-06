@@ -40,7 +40,7 @@ interface Twitter : OAuthSupport {
     fun list(): ListsResources
 
     /** A wrapper of [twitter4j.Twitter.savedSearches] */
-    // fun savedSearches(): SavedSearchesResources
+    fun savedSearches(): SavedSearchesResources
 
     /** A wrapper of [twitter4j.Twitter.placesGeo] */
     // fun placesGeo(): PlacesGeoResources
