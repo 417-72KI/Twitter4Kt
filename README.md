@@ -1,6 +1,6 @@
 # Twitter4Kt
 ![publish](https://github.com/417-72KI/Twitter4Kt/actions/workflows/publish.yml/badge.svg)
-<!--[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.417-72ki/twitter4kt/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.417-72ki/twitter4kt)-->
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.417-72ki/twitter4kt/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.417-72ki/twitter4kt)
 
 Twitter4Kt is a wrapper for [`Twitter4J`](https://github.com/Twitter4J/Twitter4J) to support Kotlin Coroutines.
 
@@ -54,12 +54,20 @@ scope.launch {
 ## Installation
 
 **NOTE**
-Since `0.1.0`, the artifact will be deployed on Maven Central, and the credentials for GitHub Package Registry will no longer be required.
+Since `0.1.0`, artifacts will be deployed on Maven Central, and the credentials for GitHub Package Registry will no longer be required.  
 Instead, the group ID will be changed while package names in modules are not modified.
 
 ### Gradle(Groovy)
 #### >= `v0.1.0`
-TBD
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.github.417-72ki:twitter4kt:0.1.0'
+}
+```
 
 #### <= `v0.0.5`
 ##### top-level `build.gradle`
@@ -89,8 +97,17 @@ dependencies {
 
 ### Gradle(Kotlin)
 #### >= `v0.1.0`
-TBD
-#### <== `v0.0.5`
+```kotlin
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("io.github.417-72ki:twitter4kt:0.1.0")
+}
+```
+
+#### <= `v0.0.5`
 ##### top-level `build.gradle.kts`
 
 ```kotlin
