@@ -4,6 +4,7 @@ plugins {
     id(Plugins.ktlint) version Plugins.Version.ktlint
     `java-library`
     `maven-publish`
+    signing
 }
 
 repositories {
@@ -32,7 +33,7 @@ ktlint {
     }
 }
 
-val sourceJar by tasks.creating(Jar::class) {
+val sourcesJar by tasks.creating(Jar::class) {
     archiveClassifier.set("sources")
     from(sourceSets["main"].allSource)
 }
@@ -51,14 +52,9 @@ tasks {
         kotlinOptions.jvmTarget = Dependencies.Version.jvmTarget
     }
 
-    dokkaJavadoc {
-        inputs.dir("src/main/kotlin")
-    }
-
     artifacts {
-        archives(sourceJar)
+        archives(sourcesJar)
         archives(javadocJar)
-        archives(jar)
     }
 }
 
@@ -96,60 +92,56 @@ tasks.register("createTagFromVersion") {
     }
 }
 
+group = rootProject.group
+version = rootProject.version
+
 publishing {
     publications {
-        val describedVersion = createVersion(rootProject)
         create<MavenPublication>("maven") {
-            groupId = "jp.room417"
             artifactId = "twitter4kt"
-            version = describedVersion
             from(components["java"])
+            artifact(sourcesJar)
             artifact(javadocJar)
 
-            // pom {
-            //     withXml {
-            //         println(asNode().get("dependencies"))
-            //         val dependenciesNode = asNode().appendNode("dependencies")
-            //         configurations.implementation.get().allDependencies.forEach {
-            //             if (it.group == null || it.version == null || it.name == "unspecified")
-            //                 return@forEach
-            //             val dependencyNode = dependenciesNode.appendNode("dependency")
-            //             if (it.group == rootProject.name) {
-            //                 val dependency = project(":${it.name}")
-            //                 val maven = dependency.publishing.publications["maven"] as MavenPublication
-            //                 dependencyNode.appendNode(
-            //                     "groupId",
-            //                     maven.groupId
-            //                 )
-            //                 dependencyNode.appendNode(
-            //                     "artifactId",
-            //                     maven.artifactId
-            //                 )
-            //                 dependencyNode.appendNode(
-            //                     "version",
-            //                     maven.version
-            //                 )
-            //             } else {
-            //                 dependencyNode.appendNode("groupId", it.group)
-            //                 dependencyNode.appendNode("artifactId", it.name)
-            //                 dependencyNode.appendNode("version", it.version)
-            //             }
-            //         }
-            //     }
-            // }
-        }
-    }
+            project.rootProject.getProperties("pom.properties")?.let { properties ->
+                pom {
+                    name.set(properties.getProperty("ARTIFACT_ID"))
+                    description.set(properties.getProperty("DESCRIPTION"))
+                    url.set(properties.getProperty("URL"))
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/417-72KI/Twitter4Kt")
-            credentials {
-                username = rootProject.localProperties?.getProperty("gpr.user")
-                    ?: System.getenv("GITHUB_USER")
-                password = rootProject.localProperties?.getProperty("gpr.key")
-                    ?: System.getenv("GITHUB_TOKEN")
+                    licenses {
+                        license {
+                            name.set(properties.getProperty("LICENSE_NAME"))
+                            url.set(properties.getProperty("LICENSE_URL"))
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set(properties.getProperty("DEVELOPER_ID"))
+                            name.set(properties.getProperty("DEVELOPER_NAME"))
+                            email.set(properties.getProperty("DEVELOPER_EMAIL"))
+                        }
+                    }
+                    scm {
+                        connection.set(properties.getProperty("SCM_CONNECTION"))
+                        developerConnection.set(properties.getProperty("SCM_DEVELOPER_CONNECTION"))
+                        url.set(properties.getProperty("SCM_URL"))
+                    }
+                }
             }
         }
     }
+}
+
+val signingKeyId: String? by project
+val signingKey: String? by project
+val signingKeyPassword: String? by project
+
+signing {
+    useInMemoryPgpKeys(
+        signingKeyId,
+        signingKey,
+        signingKeyPassword
+    )
+    sign(publishing.publications)
 }
