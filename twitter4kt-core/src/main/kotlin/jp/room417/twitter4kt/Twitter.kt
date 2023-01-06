@@ -31,7 +31,7 @@ interface Twitter : OAuthSupport {
     fun users(): UsersResources
 
     /** A wrapper of [twitter4j.Twitter.suggestedUsers] */
-    // fun suggestedUsers(): SuggestedUsersResources
+    fun suggestedUsers(): SuggestedUsersResources
 
     /** A wrapper of [twitter4j.Twitter.favorites] */
     // fun favorites(): FavoritesResources

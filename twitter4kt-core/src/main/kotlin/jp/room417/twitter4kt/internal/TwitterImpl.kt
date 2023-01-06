@@ -16,6 +16,7 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override fun directMessages() = DirectMessagesResourcesImpl(twitter)
     override fun friendsFollowers() = FriendsFollowersResourcesImpl(twitter)
     override fun users() = UsersResourcesImpl(twitter)
+    override fun suggestedUsers() = SuggestedUsersResourcesImpl(twitter)
 
     // OAuthSupport
     override fun setOAuthConsumer(
