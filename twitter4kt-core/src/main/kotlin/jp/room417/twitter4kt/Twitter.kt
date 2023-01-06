@@ -43,7 +43,7 @@ interface Twitter : OAuthSupport {
     fun savedSearches(): SavedSearchesResources
 
     /** A wrapper of [twitter4j.Twitter.placesGeo] */
-    // fun placesGeo(): PlacesGeoResources
+    fun placesGeo(): PlacesGeoResources
 
     /** A wrapper of [twitter4j.Twitter.trends] */
     // fun trends(): TrendsResources
