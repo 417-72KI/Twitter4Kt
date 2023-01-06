@@ -34,7 +34,7 @@ interface Twitter : OAuthSupport {
     fun suggestedUsers(): SuggestedUsersResources
 
     /** A wrapper of [twitter4j.Twitter.favorites] */
-    // fun favorites(): FavoritesResources
+    fun favorites(): FavoritesResources
 
     /** A wrapper of [twitter4j.Twitter.list] */
     // fun list(): ListsResources
