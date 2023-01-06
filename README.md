@@ -55,6 +55,10 @@ Since not all of apis is supporting, PRs are welcome.
 
 ## Installation
 
+**NOTE**
+Since `0.1.0`, the artifact will be deployed on Maven Central, and the credentials for GitHub Package Registry will no longer be required.
+Instead, the group ID will be changed while package names in modules are not modified.
+
 ### Gradle(Groovy)
 
 #### top-level `build.gradle`
