@@ -46,7 +46,7 @@ interface Twitter : OAuthSupport {
     fun placesGeo(): PlacesGeoResources
 
     /** A wrapper of [twitter4j.Twitter.trends] */
-    // fun trends(): TrendsResources
+    fun trends(): TrendsResources
 
     /** A wrapper of [twitter4j.Twitter.spamReporting] */
     // fun spamReporting(): SpamReportingResource
