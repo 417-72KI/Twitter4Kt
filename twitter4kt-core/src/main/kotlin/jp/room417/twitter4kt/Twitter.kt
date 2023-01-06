@@ -25,7 +25,7 @@ interface Twitter : OAuthSupport {
     fun directMessages(): DirectMessagesResources
 
     /** A wrapper of [twitter4j.Twitter.friendsFollowers] */
-    // fun friendsFollowers(): FriendsFollowersResources
+    fun friendsFollowers(): FriendsFollowersResources
 
     /** A wrapper of [twitter4j.Twitter.users] */
     fun users(): UsersResources
@@ -54,6 +54,7 @@ interface Twitter : OAuthSupport {
     /** A wrapper of [twitter4j.Twitter.help] */
     // fun help(): HelpResources
 
+    /** A builder of [Twitter] instance. */
     @Suppress("unused", "MemberVisibilityCanBePrivate")
     class Builder(
         private val factory: TwitterFactory = TwitterFactory(),
