@@ -51,4 +51,7 @@ interface OAuthSupport {
 
     /** A wrapper of [twitter4j.auth.OAuthSupport.setOAuthAccessToken] */
     fun setOAuthAccessToken(accessToken: AccessToken)
+
+    /** A wrapper of [twitter4j.auth.OAuthSupport.setOAuthAccessToken] with setting `null` */
+    fun clearOAuthAccessToken()
 }

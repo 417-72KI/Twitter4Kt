@@ -99,4 +99,8 @@ internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override fun setOAuthAccessToken(accessToken: AccessToken) {
         twitter.oAuthAccessToken = accessToken
     }
+
+    override fun clearOAuthAccessToken() {
+        twitter.oAuthAccessToken = null
+    }
 }
