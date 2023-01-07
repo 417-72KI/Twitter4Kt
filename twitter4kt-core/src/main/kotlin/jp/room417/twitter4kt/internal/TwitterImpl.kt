@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
 
+@Suppress("OverridingDeprecatedMember", "OVERRIDE_DEPRECATION")
 internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override val origin = twitter
 

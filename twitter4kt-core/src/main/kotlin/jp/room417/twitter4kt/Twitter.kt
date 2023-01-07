@@ -10,6 +10,10 @@ import twitter4j.auth.AccessToken
 /** A wrapper of [twitter4j.Twitter] */
 interface Twitter : OAuthSupport {
     /** If an api that you want to use has not been wrapped yet, you can call the original api from here. */
+    @Deprecated(
+        message = "All apis in `twitter4j` is supported now. This will be removed in future.",
+        level = DeprecationLevel.WARNING
+    )
     val origin: twitter4j.Twitter
 
     /** A wrapper of [twitter4j.Twitter.timelines] */
