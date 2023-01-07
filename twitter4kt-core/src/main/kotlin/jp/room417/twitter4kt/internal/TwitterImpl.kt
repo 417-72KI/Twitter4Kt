@@ -2,6 +2,8 @@ package jp.room417.twitter4kt.internal
 
 import jp.room417.twitter4kt.Twitter
 import jp.room417.twitter4kt.api.internal.*
+import jp.room417.twitter4kt.v1.TwitterV1
+import jp.room417.twitter4kt.v1.internal.TwitterV1Impl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import twitter4j.auth.AccessToken
@@ -10,6 +12,8 @@ import twitter4j.auth.RequestToken
 @Suppress("OverridingDeprecatedMember", "OVERRIDE_DEPRECATION")
 internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override val origin = twitter
+    override val v1: TwitterV1
+        get() = TwitterV1Impl(twitter)
 
     override fun timelines() = TimelinesResourcesImpl(twitter)
     override fun tweets() = TweetsResourcesImpl(twitter)
