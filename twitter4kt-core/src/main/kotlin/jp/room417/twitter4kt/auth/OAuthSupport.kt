@@ -5,6 +5,7 @@ import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
 
 /** A wrapper of [twitter4j.auth.OAuthSupport] */
+@Deprecated(message = "Will be removed on Twitter4J 4.1.2")
 interface OAuthSupport {
     /** A wrapper of [twitter4j.auth.OAuthSupport.setOAuthConsumer] */
     fun setOAuthConsumer(consumerKey: String, consumerSecret: String)
