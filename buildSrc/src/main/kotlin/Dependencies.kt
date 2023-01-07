@@ -9,7 +9,7 @@ object Dependencies {
         val kotlin by lazy { "1.7.20" }
         val kotlinCoroutines by lazy { "1.6.4" }
         val ktlint by lazy { "0.45.2" }
-        val twitter4j by lazy { "4.0.7" }
+        val twitter4j by lazy { "4.1.2" }
     }
 }
 
