@@ -6,6 +6,10 @@ import twitter4j.TwitterException
 import twitter4j.User
 
 /** A wrapper of [twitter4j.api.SuggestedUsersResources] */
+@Deprecated(
+    message = "Deprecated from Twitter and will be removed on Twitter4j 4.1.0.\nSee https://twittercommunity.com/t/upcoming-changes-to-user-object-and-get-users-suggestions-endpoints/124732",
+    level = DeprecationLevel.WARNING
+)
 interface SuggestedUsersResources {
     /** A wrapper of [twitter4j.api.SuggestedUsersResources.getUserSuggestions] */
     @Throws(TwitterException::class)

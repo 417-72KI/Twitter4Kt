@@ -8,6 +8,7 @@ import twitter4j.ResponseList
 import twitter4j.Twitter
 import twitter4j.User
 
+@Suppress("DEPRECATION")
 internal class SuggestedUsersResourcesImpl(private val twitter: Twitter) : SuggestedUsersResources {
     override suspend fun getUserSuggestions(categorySlug: String): ResponseList<User> =
         withContext(Dispatchers.IO) { twitter.getUserSuggestions(categorySlug) }
