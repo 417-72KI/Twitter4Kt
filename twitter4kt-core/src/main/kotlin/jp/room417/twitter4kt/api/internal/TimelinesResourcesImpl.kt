@@ -20,7 +20,7 @@ internal class TimelinesResourcesImpl(private val twitter: Twitter) : TimelinesR
         }
 
     override suspend fun getUserTimeline(
-        screenName: String?,
+        screenName: String,
         paging: Paging
     ): ResponseList<Status> =
         withContext(Dispatchers.IO) {
@@ -32,7 +32,7 @@ internal class TimelinesResourcesImpl(private val twitter: Twitter) : TimelinesR
             twitter.getUserTimeline(userId, paging)
         }
 
-    override suspend fun getUserTimeline(screenName: String?): ResponseList<Status> =
+    override suspend fun getUserTimeline(screenName: String): ResponseList<Status> =
         withContext(Dispatchers.IO) {
             twitter.getUserTimeline(screenName)
         }
