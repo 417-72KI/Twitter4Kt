@@ -49,6 +49,20 @@ interface Twitter {
             return this
         }
 
-        fun build(): Twitter = TwitterImpl(builder.build())
+        fun build(): Twitter {
+            // For debug
+            // val clazz = Class.forName("twitter4j.Configuration")
+            // clazz.getDeclaredMethod("buildConfiguration")
+            //     .apply { isAccessible = true }
+            //     .invoke(builder)
+            //     .let { println(it) }
+            // clazz.getDeclaredField("auth")
+            //     .apply { isAccessible = true }
+            //     .get(builder)
+            //     .also { println(it) }
+            //     .let { it as? twitter4j.Authorization }
+            //     ?.let { println(it.isEnabled) }
+            return TwitterImpl(builder.build())
+        }
     }
 }
