@@ -1,6 +1,7 @@
 package jp.room417.twitter4kt
 
 import jp.room417.twitter4kt.api.*
+import jp.room417.twitter4kt.auth.Authorization
 import jp.room417.twitter4kt.auth.OAuthSupport
 import jp.room417.twitter4kt.internal.TwitterImpl
 import jp.room417.twitter4kt.util.letWith
@@ -17,6 +18,9 @@ interface Twitter : OAuthSupport {
         level = DeprecationLevel.WARNING
     )
     val origin: twitter4j.Twitter
+
+    /** A wrapper of [twitter4j.Twitter.getAuthorization] */
+    val authorization: Authorization
 
     /** An interface for v1.1 apis. */
     val v1: TwitterV1
