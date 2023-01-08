@@ -1,11 +1,10 @@
 package jp.room417.twitter4kt
 
 import jp.room417.twitter4kt.internal.TwitterImpl
-import jp.room417.twitter4kt.util.letWith
 import jp.room417.twitter4kt.v1.TwitterV1
 import jp.room417.twitter4kt.v1.api.*
 import twitter4j.AccessToken
-import twitter4j.TwitterFactory
+import twitter4j.Twitter.TwitterBuilder
 
 /** A wrapper of [twitter4j.Twitter] */
 @Suppress("DEPRECATION")
@@ -20,94 +19,36 @@ interface Twitter {
     /** An interface for v1.1 apis. */
     val v1: TwitterV1
 
-    /** A wrapper of [twitter4j.Twitter.timelines] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.timelines()"))
-    fun timelines(): TimelinesResources
-
-    /** A wrapper of [twitter4j.Twitter.tweets] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.tweets()"))
-    fun tweets(): TweetsResources
-
-    /** A wrapper of [twitter4j.Twitter.search] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.search()"))
-    fun search(): SearchResource
-
-    /** A wrapper of [twitter4j.Twitter.directMessages] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.directMessages()"))
-    fun directMessages(): DirectMessagesResources
-
-    /** A wrapper of [twitter4j.Twitter.friendsFollowers] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.friendsFollowers()"))
-    fun friendsFollowers(): FriendsFollowersResources
-
-    /** A wrapper of [twitter4j.Twitter.users] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.users()"))
-    fun users(): UsersResources
-
-    /** A wrapper of [twitter4j.Twitter.suggestedUsers] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.suggestedUsers()"))
-    fun suggestedUsers(): SuggestedUsersResources
-
-    /** A wrapper of [twitter4j.Twitter.favorites] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.favorites()"))
-    fun favorites(): FavoritesResources
-
-    /** A wrapper of [twitter4j.Twitter.list] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.list()"))
-    fun list(): ListsResources
-
-    /** A wrapper of [twitter4j.Twitter.savedSearches] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.savedSearches()"))
-    fun savedSearches(): SavedSearchesResources
-
-    /** A wrapper of [twitter4j.Twitter.placesGeo] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.placesGeo()"))
-    fun placesGeo(): PlacesGeoResources
-
-    /** A wrapper of [twitter4j.Twitter.trends] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.trends()"))
-    fun trends(): TrendsResources
-
-    /** A wrapper of [twitter4j.Twitter.spamReporting] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.spamReporting()"))
-    fun spamReporting(): SpamReportingResource
-
-    /** A wrapper of [twitter4j.Twitter.help] */
-    @Deprecated(message = "Moved to `v1`", replaceWith = ReplaceWith("v1.help()"))
-    fun help(): HelpResources
-
     /** A builder of [Twitter] instance. */
     @Suppress("unused", "MemberVisibilityCanBePrivate")
     class Builder(
-        private val factory: TwitterFactory = TwitterFactory(),
-        private var consumerKey: String? = null,
-        private var consumerSecret: String? = null,
-        private var accessToken: AccessToken? = null
+        private val builder: TwitterBuilder = twitter4j.Twitter.newBuilder(),
+        consumerKey: String? = null,
+        consumerSecret: String? = null,
+        accessToken: AccessToken? = null
     ) {
-        fun setOAuthConsumer(
-            consumerKey: String,
-            consumerSecret: String
-        ): Builder {
-            this.consumerKey = consumerKey
-            this.consumerSecret = consumerSecret
+        init {
+            builder.oAuthConsumer(consumerKey, consumerSecret)
+            if (accessToken != null) {
+                builder.oAuthAccessToken(accessToken)
+            }
+        }
+
+        fun setOAuthConsumer(consumerKey: String, consumerSecret: String): Builder {
+            builder.oAuthConsumer(consumerKey, consumerSecret)
             return this
         }
 
         fun setOAuthAccessToken(accessToken: AccessToken): Builder {
-            this.accessToken = accessToken
+            builder.oAuthAccessToken(accessToken)
             return this
         }
 
-        fun setOAuthAccessToken(token: String, tokenSecret: String) =
-            setOAuthAccessToken(AccessToken(token, tokenSecret))
-
-        fun build(): Twitter = TwitterImpl(factory.instance).apply {
-            consumerKey?.letWith(consumerSecret) { key, secret ->
-                setOAuthConsumer(key, secret)
-            }
-            accessToken?.let {
-                setOAuthAccessToken(it)
-            }
+        fun setOAuthAccessToken(token: String, tokenSecret: String): Builder {
+            builder.oAuthAccessToken(token, tokenSecret)
+            return this
         }
+
+        fun build(): Twitter = TwitterImpl(builder.build())
     }
 }
