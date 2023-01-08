@@ -1,6 +1,6 @@
-package jp.room417.twitter4kt.api.internal
+package jp.room417.twitter4kt.v1.api.internal
 
-import jp.room417.twitter4kt.api.SavedSearchesResources
+import jp.room417.twitter4kt.v1.api.SavedSearchesResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import twitter4j.ResponseList

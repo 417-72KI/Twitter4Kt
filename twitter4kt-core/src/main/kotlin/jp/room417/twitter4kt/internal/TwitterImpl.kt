@@ -1,11 +1,11 @@
 package jp.room417.twitter4kt.internal
 
 import jp.room417.twitter4kt.Twitter
-import jp.room417.twitter4kt.api.internal.*
 import jp.room417.twitter4kt.auth.Authorization
 import jp.room417.twitter4kt.auth.OAuth2Authorization
 import jp.room417.twitter4kt.auth.OAuthAuthorization
 import jp.room417.twitter4kt.v1.TwitterV1
+import jp.room417.twitter4kt.v1.api.internal.*
 import jp.room417.twitter4kt.v1.internal.TwitterV1Impl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

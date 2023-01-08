@@ -1,4 +1,4 @@
-package jp.room417.twitter4kt.api
+package jp.room417.twitter4kt.v1.api
 
 import twitter4j.Category
 import twitter4j.ResponseList

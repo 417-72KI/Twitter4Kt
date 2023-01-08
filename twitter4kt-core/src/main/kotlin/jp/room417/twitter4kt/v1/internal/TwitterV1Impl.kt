@@ -1,7 +1,7 @@
 package jp.room417.twitter4kt.v1.internal
 
-import jp.room417.twitter4kt.api.internal.*
 import jp.room417.twitter4kt.v1.TwitterV1
+import jp.room417.twitter4kt.v1.api.internal.*
 import twitter4j.Twitter
 
 internal class TwitterV1Impl(private val twitter: Twitter) : TwitterV1 {

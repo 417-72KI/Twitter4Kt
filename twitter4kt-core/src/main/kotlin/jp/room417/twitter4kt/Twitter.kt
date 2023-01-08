@@ -1,11 +1,11 @@
 package jp.room417.twitter4kt
 
-import jp.room417.twitter4kt.api.*
 import jp.room417.twitter4kt.auth.Authorization
 import jp.room417.twitter4kt.auth.OAuthSupport
 import jp.room417.twitter4kt.internal.TwitterImpl
 import jp.room417.twitter4kt.util.letWith
 import jp.room417.twitter4kt.v1.TwitterV1
+import jp.room417.twitter4kt.v1.api.*
 import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 

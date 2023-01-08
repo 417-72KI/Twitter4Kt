@@ -1,4 +1,4 @@
-package jp.room417.twitter4kt.api
+package jp.room417.twitter4kt.v1.api
 
 import twitter4j.ResponseList
 import twitter4j.SavedSearch

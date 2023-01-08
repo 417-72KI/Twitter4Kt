@@ -1,6 +1,6 @@
 package jp.room417.twitter4kt.v1
 
-import jp.room417.twitter4kt.api.*
+import jp.room417.twitter4kt.v1.api.*
 
 interface TwitterV1 {
     /** A wrapper of [twitter4j.Twitter.timelines] */
