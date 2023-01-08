@@ -17,7 +17,7 @@ interface TimelinesResources {
 
     /** A wrapper of [twitter4j.api.TimelinesResources.getUserTimeline] */
     @Throws(TwitterException::class)
-    suspend fun getUserTimeline(screenName: String?, paging: Paging): ResponseList<Status>
+    suspend fun getUserTimeline(screenName: String, paging: Paging): ResponseList<Status>
 
     /** A wrapper of [twitter4j.api.TimelinesResources.getUserTimeline] */
     @Throws(TwitterException::class)
@@ -25,7 +25,7 @@ interface TimelinesResources {
 
     /** A wrapper of [twitter4j.api.TimelinesResources.getUserTimeline] */
     @Throws(TwitterException::class)
-    suspend fun getUserTimeline(screenName: String?): ResponseList<Status>
+    suspend fun getUserTimeline(screenName: String): ResponseList<Status>
 
     /** A wrapper of [twitter4j.api.TimelinesResources.getUserTimeline] */
     @Throws(TwitterException::class)
