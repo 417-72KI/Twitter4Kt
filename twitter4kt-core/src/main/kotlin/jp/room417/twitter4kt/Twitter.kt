@@ -2,12 +2,10 @@ package jp.room417.twitter4kt
 
 import jp.room417.twitter4kt.internal.TwitterImpl
 import jp.room417.twitter4kt.v1.TwitterV1
-import jp.room417.twitter4kt.v1.api.*
 import twitter4j.AccessToken
 import twitter4j.Twitter.TwitterBuilder
 
 /** A wrapper of [twitter4j.Twitter] */
-@Suppress("DEPRECATION")
 interface Twitter {
     /** If an api that you want to use has not been wrapped yet, you can call the original api from here. */
     @Deprecated(
