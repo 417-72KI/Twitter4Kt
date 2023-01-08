@@ -1,26 +1,21 @@
 package jp.room417.twitter4kt
 
-import jp.room417.twitter4kt.auth.Authorization
-import jp.room417.twitter4kt.auth.OAuthSupport
 import jp.room417.twitter4kt.internal.TwitterImpl
 import jp.room417.twitter4kt.util.letWith
 import jp.room417.twitter4kt.v1.TwitterV1
 import jp.room417.twitter4kt.v1.api.*
+import twitter4j.AccessToken
 import twitter4j.TwitterFactory
-import twitter4j.auth.AccessToken
 
 /** A wrapper of [twitter4j.Twitter] */
 @Suppress("DEPRECATION")
-interface Twitter : OAuthSupport {
+interface Twitter {
     /** If an api that you want to use has not been wrapped yet, you can call the original api from here. */
     @Deprecated(
         message = "All apis in `twitter4j` is supported now. This will be removed in future.",
         level = DeprecationLevel.WARNING
     )
     val origin: twitter4j.Twitter
-
-    /** A wrapper of [twitter4j.Twitter.getAuthorization] */
-    val authorization: Authorization
 
     /** An interface for v1.1 apis. */
     val v1: TwitterV1

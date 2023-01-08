@@ -3,94 +3,94 @@ package jp.room417.twitter4kt.v1.api.internal
 import jp.room417.twitter4kt.v1.api.FriendsFollowersResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import twitter4j.*
+import twitter4j.v1.*
 
-internal class FriendsFollowersResourcesImpl(private val twitter: Twitter) : FriendsFollowersResources {
+internal class FriendsFollowersResourcesImpl(private val friendsFollowers: twitter4j.v1.FriendsFollowersResources) : FriendsFollowersResources {
     override suspend fun getNoRetweetsFriendships(): IDs = withContext(Dispatchers.IO) {
-        twitter.noRetweetsFriendships
+        friendsFollowers.noRetweetsFriendships
     }
 
     override suspend fun getFriendsIDs(cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getFriendsIDs(cursor)
+        friendsFollowers.getFriendsIDs(cursor)
     }
 
     override suspend fun getFriendsIDs(userId: Long, cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getFriendsIDs(userId, cursor)
+        friendsFollowers.getFriendsIDs(userId, cursor)
     }
 
     override suspend fun getFriendsIDs(userId: Long, cursor: Long, count: Int): IDs = withContext(Dispatchers.IO) {
-        twitter.getFriendsIDs(userId, cursor, count)
+        friendsFollowers.getFriendsIDs(userId, cursor, count)
     }
 
     override suspend fun getFriendsIDs(screenName: String, cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getFriendsIDs(screenName, cursor)
+        friendsFollowers.getFriendsIDs(screenName, cursor)
     }
 
     override suspend fun getFriendsIDs(screenName: String, cursor: Long, count: Int): IDs =
         withContext(Dispatchers.IO) {
-            twitter.getFriendsIDs(screenName, cursor, count)
+            friendsFollowers.getFriendsIDs(screenName, cursor, count)
         }
 
     override suspend fun getFollowersIDs(cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getFollowersIDs(cursor)
+        friendsFollowers.getFollowersIDs(cursor)
     }
 
     override suspend fun getFollowersIDs(userId: Long, cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getFollowersIDs(userId, cursor)
+        friendsFollowers.getFollowersIDs(userId, cursor)
     }
 
     override suspend fun getFollowersIDs(userId: Long, cursor: Long, count: Int): IDs = withContext(Dispatchers.IO) {
-        twitter.getFollowersIDs(userId, cursor, count)
+        friendsFollowers.getFollowersIDs(userId, cursor, count)
     }
 
     override suspend fun getFollowersIDs(screenName: String, cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getFollowersIDs(screenName, cursor)
+        friendsFollowers.getFollowersIDs(screenName, cursor)
     }
 
     override suspend fun getFollowersIDs(screenName: String, cursor: Long, count: Int): IDs =
         withContext(Dispatchers.IO) {
-            twitter.getFollowersIDs(screenName, cursor, count)
+            friendsFollowers.getFollowersIDs(screenName, cursor, count)
         }
 
     override suspend fun lookupFriendships(vararg ids: Long): ResponseList<Friendship> = withContext(Dispatchers.IO) {
-        twitter.lookupFriendships(*ids)
+        friendsFollowers.lookupFriendships(*ids)
     }
 
     override suspend fun lookupFriendships(vararg screenNames: String): ResponseList<Friendship> =
         withContext(Dispatchers.IO) {
-            twitter.lookupFriendships(*screenNames)
+            friendsFollowers.lookupFriendships(*screenNames)
         }
 
     override suspend fun getIncomingFriendships(cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getIncomingFriendships(cursor)
+        friendsFollowers.getIncomingFriendships(cursor)
     }
 
     override suspend fun getOutgoingFriendships(cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getOutgoingFriendships(cursor)
+        friendsFollowers.getOutgoingFriendships(cursor)
     }
 
     override suspend fun createFriendship(userId: Long): User = withContext(Dispatchers.IO) {
-        twitter.createFriendship(userId)
+        friendsFollowers.createFriendship(userId)
     }
 
     override suspend fun createFriendship(screenName: String): User = withContext(Dispatchers.IO) {
-        twitter.createFriendship(screenName)
+        friendsFollowers.createFriendship(screenName)
     }
 
     override suspend fun createFriendship(userId: Long, follow: Boolean): User = withContext(Dispatchers.IO) {
-        twitter.createFriendship(userId, follow)
+        friendsFollowers.createFriendship(userId, follow)
     }
 
     override suspend fun createFriendship(screenName: String, follow: Boolean): User = withContext(Dispatchers.IO) {
-        twitter.createFriendship(screenName, follow)
+        friendsFollowers.createFriendship(screenName, follow)
     }
 
     override suspend fun destroyFriendship(userId: Long): User = withContext(Dispatchers.IO) {
-        twitter.destroyFriendship(userId)
+        friendsFollowers.destroyFriendship(userId)
     }
 
     override suspend fun destroyFriendship(screenName: String): User = withContext(Dispatchers.IO) {
-        twitter.destroyFriendship(screenName)
+        friendsFollowers.destroyFriendship(screenName)
     }
 
     override suspend fun updateFriendship(
@@ -98,7 +98,7 @@ internal class FriendsFollowersResourcesImpl(private val twitter: Twitter) : Fri
         enableDeviceNotification: Boolean,
         retweets: Boolean
     ): Relationship = withContext(Dispatchers.IO) {
-        twitter.updateFriendship(userId, enableDeviceNotification, retweets)
+        friendsFollowers.updateFriendship(userId, enableDeviceNotification, retweets)
     }
 
     override suspend fun updateFriendship(
@@ -106,36 +106,36 @@ internal class FriendsFollowersResourcesImpl(private val twitter: Twitter) : Fri
         enableDeviceNotification: Boolean,
         retweets: Boolean
     ): Relationship = withContext(Dispatchers.IO) {
-        twitter.updateFriendship(screenName, enableDeviceNotification, retweets)
+        friendsFollowers.updateFriendship(screenName, enableDeviceNotification, retweets)
     }
 
     override suspend fun showFriendship(sourceId: Long, targetId: Long): Relationship = withContext(Dispatchers.IO) {
-        twitter.showFriendship(sourceId, targetId)
+        friendsFollowers.showFriendship(sourceId, targetId)
     }
 
     override suspend fun showFriendship(sourceScreenName: String, targetScreenName: String): Relationship =
         withContext(Dispatchers.IO) {
-            twitter.showFriendship(sourceScreenName, targetScreenName)
+            friendsFollowers.showFriendship(sourceScreenName, targetScreenName)
         }
 
     override suspend fun getFriendsList(userId: Long, cursor: Long): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFriendsList(userId, cursor)
+            friendsFollowers.getFriendsList(userId, cursor)
         }
 
     override suspend fun getFriendsList(userId: Long, cursor: Long, count: Int): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFriendsList(userId, cursor, count)
+            friendsFollowers.getFriendsList(userId, cursor, count)
         }
 
     override suspend fun getFriendsList(screenName: String, cursor: Long): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFriendsList(screenName, cursor)
+            friendsFollowers.getFriendsList(screenName, cursor)
         }
 
     override suspend fun getFriendsList(screenName: String, cursor: Long, count: Int): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFriendsList(screenName, cursor, count)
+            friendsFollowers.getFriendsList(screenName, cursor, count)
         }
 
     override suspend fun getFriendsList(
@@ -145,7 +145,7 @@ internal class FriendsFollowersResourcesImpl(private val twitter: Twitter) : Fri
         skipStatus: Boolean,
         includeUserEntities: Boolean
     ): PagableResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getFriendsList(userId, cursor, count, skipStatus, includeUserEntities)
+        friendsFollowers.getFriendsList(userId, cursor, count, skipStatus, includeUserEntities)
     }
 
     override suspend fun getFriendsList(
@@ -155,27 +155,27 @@ internal class FriendsFollowersResourcesImpl(private val twitter: Twitter) : Fri
         skipStatus: Boolean,
         includeUserEntities: Boolean
     ): PagableResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getFriendsList(screenName, cursor, count, skipStatus, includeUserEntities)
+        friendsFollowers.getFriendsList(screenName, cursor, count, skipStatus, includeUserEntities)
     }
 
     override suspend fun getFollowersList(userId: Long, cursor: Long): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFollowersList(userId, cursor)
+            friendsFollowers.getFollowersList(userId, cursor)
         }
 
     override suspend fun getFollowersList(screenName: String, cursor: Long): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFollowersList(screenName, cursor)
+            friendsFollowers.getFollowersList(screenName, cursor)
         }
 
     override suspend fun getFollowersList(userId: Long, cursor: Long, count: Int): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFollowersList(userId, cursor, count)
+            friendsFollowers.getFollowersList(userId, cursor, count)
         }
 
     override suspend fun getFollowersList(screenName: String, cursor: Long, count: Int): PagableResponseList<User> =
         withContext(Dispatchers.IO) {
-            twitter.getFollowersList(screenName, cursor, count)
+            friendsFollowers.getFollowersList(screenName, cursor, count)
         }
 
     override suspend fun getFollowersList(
@@ -185,7 +185,7 @@ internal class FriendsFollowersResourcesImpl(private val twitter: Twitter) : Fri
         skipStatus: Boolean,
         includeUserEntities: Boolean
     ): PagableResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getFollowersList(userId, cursor, count, skipStatus, includeUserEntities)
+        friendsFollowers.getFollowersList(userId, cursor, count, skipStatus, includeUserEntities)
     }
 
     override suspend fun getFollowersList(
@@ -195,6 +195,6 @@ internal class FriendsFollowersResourcesImpl(private val twitter: Twitter) : Fri
         skipStatus: Boolean,
         includeUserEntities: Boolean
     ): PagableResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getFollowersList(screenName, cursor, count, skipStatus, includeUserEntities)
+        friendsFollowers.getFollowersList(screenName, cursor, count, skipStatus, includeUserEntities)
     }
 }

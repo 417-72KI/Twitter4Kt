@@ -9,21 +9,13 @@ import jp.room417.twitter4kt.v1.api.internal.*
 import jp.room417.twitter4kt.v1.internal.TwitterV1Impl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import twitter4j.auth.AccessToken
-import twitter4j.auth.RequestToken
+import twitter4j.AccessToken
+import twitter4j.RequestToken
 
 @Suppress("OverridingDeprecatedMember", "OVERRIDE_DEPRECATION")
 internal class TwitterImpl(private val twitter: twitter4j.Twitter) : Twitter {
     override val origin = twitter
 
-    override val authorization: Authorization
-        get() {
-            return when (val auth = twitter.authorization) {
-                is twitter4j.auth.OAuthAuthorization -> OAuthAuthorization(auth)
-                is twitter4j.auth.OAuth2Authorization -> OAuth2Authorization(auth)
-                else -> throw IllegalStateException("Unexpected authorization: $auth")
-            }
-        }
     override val v1: TwitterV1
         get() = TwitterV1Impl(twitter)
 
