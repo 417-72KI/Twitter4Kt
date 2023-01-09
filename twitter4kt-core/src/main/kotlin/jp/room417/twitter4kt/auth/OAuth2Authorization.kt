@@ -9,6 +9,12 @@ import twitter4j.conf.ConfigurationContext
 /** A wrapper of [twitter4j.auth.OAuth2Authorization] */
 @Suppress("unused")
 class OAuth2Authorization(override val auth: twitter4j.auth.OAuth2Authorization) : Authorization {
+    constructor(consumerKey: String, consumerSecret: String) : this(
+        twitter4j.auth.OAuth2Authorization(ConfigurationContext.getInstance()).apply {
+            setOAuthConsumer(consumerKey, consumerSecret)
+        }
+    )
+
     constructor() : this(twitter4j.auth.OAuth2Authorization(ConfigurationContext.getInstance()))
 
     /** A wrapper of [twitter4j.auth.OAuth2Authorization.setOAuthConsumer] */
