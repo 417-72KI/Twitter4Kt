@@ -18,7 +18,7 @@ scope.launch {
     prepare()
     withContext(Dispatchers.IO) {
         try {
-            twitter.updateStatus(text)
+            twitter.v1.tweets().updateStatus(text)
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
@@ -41,7 +41,7 @@ scope.launch {
 scope.launch {
     prepare()
     try {
-        twitter.updateStatus(text)
+        twitter.v1.tweets().updateStatus(text)
         onSuccess()
     } catch (e: TwitterException) {
         onError()
@@ -54,14 +54,13 @@ scope.launch {
 ## Installation
 
 ### Gradle(Groovy)
-#### >= `v0.1.0`
 ```groovy
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'io.github.417-72ki:twitter4kt:0.2.1'
+    implementation 'io.github.417-72ki:twitter4kt:1.0.0'
 }
 ```
 
@@ -72,7 +71,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.417-72ki:twitter4kt:0.2.1")
+    implementation("io.github.417-72ki:twitter4kt:1.0.0")
 }
 ```
 
@@ -84,7 +83,7 @@ val twitter = Twitter.Builder()
     .setOAuthAccessToken("access token", "access token secret")
     .build()
 scope.launch {
-    twitter.updateStatus("Hello world!")
+    twitter.v1.tweets().updateStatus("Hello world!")
 }
 ```
 
