@@ -1,0 +1,14 @@
+package jp.room417.twitter4kt.v1.api.internal
+
+import jp.room417.twitter4kt.v1.api.SearchResource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import twitter4j.Query
+import twitter4j.QueryResult
+import twitter4j.Twitter
+
+internal class SearchResourceImpl(private val twitter: Twitter) : SearchResource {
+    override suspend fun search(query: Query): QueryResult = withContext(Dispatchers.IO) {
+        twitter.search(query)
+    }
+}
