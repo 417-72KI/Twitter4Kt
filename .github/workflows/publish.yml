@@ -45,4 +45,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Publish
-        run: ./gradlew clean printVersion test publishToSonatype
+        run: ./gradlew clean printVersion test publishToSonatype closeAndReleaseSonatypeStagingRepository
