@@ -3,28 +3,20 @@ package jp.room417.twitter4kt.v1.api.internal
 import jp.room417.twitter4kt.v1.api.PlacesGeoResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import twitter4j.*
+import twitter4j.v1.GeoQuery
+import twitter4j.v1.Place
+import twitter4j.v1.ResponseList
 
-internal class PlacesGeoResourcesImpl(private val twitter: Twitter) : PlacesGeoResources {
+internal class PlacesGeoResourcesImpl(private val placesGeo: twitter4j.v1.PlacesGeoResources) : PlacesGeoResources {
     override suspend fun getGeoDetails(placeId: String): Place = withContext(Dispatchers.IO) {
-        twitter.getGeoDetails(placeId)
+        placesGeo.getGeoDetails(placeId)
     }
 
     override suspend fun reverseGeoCode(query: GeoQuery): ResponseList<Place> = withContext(Dispatchers.IO) {
-        twitter.reverseGeoCode(query)
+        placesGeo.reverseGeoCode(query)
     }
 
     override suspend fun searchPlaces(query: GeoQuery): ResponseList<Place> = withContext(Dispatchers.IO) {
-        twitter.searchPlaces(query)
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
-    override suspend fun getSimilarPlaces(
-        location: GeoLocation,
-        name: String,
-        containedWithin: String,
-        streetAddress: String
-    ): ResponseList<Place> = withContext(Dispatchers.IO) {
-        twitter.getSimilarPlaces(location, name, containedWithin, streetAddress)
+        placesGeo.searchPlaces(query)
     }
 }

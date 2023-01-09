@@ -3,21 +3,20 @@ package jp.room417.twitter4kt.v1.api.internal
 import jp.room417.twitter4kt.v1.api.TweetsResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import twitter4j.*
+import twitter4j.v1.*
 import java.io.File
 import java.io.InputStream
 
-internal class TweetsResourcesImpl(private val twitter: Twitter) : TweetsResources {
-    override suspend fun getRetweets(statusId: Long): ResponseList<Status> =
-        withContext(Dispatchers.IO) {
-            twitter.getRetweets(statusId)
-        }
+internal class TweetsResourcesImpl(private val tweets: twitter4j.v1.TweetsResources) : TweetsResources {
+    override suspend fun getRetweets(statusId: Long): ResponseList<Status> = withContext(Dispatchers.IO) {
+        tweets.getRetweets(statusId)
+    }
 
     override suspend fun getRetweeterIds(
         statusId: Long,
         cursor: Long
     ): IDs = withContext(Dispatchers.IO) {
-        twitter.getRetweeterIds(
+        tweets.getRetweeterIds(
             statusId,
             cursor
         )
@@ -28,7 +27,7 @@ internal class TweetsResourcesImpl(private val twitter: Twitter) : TweetsResourc
         count: Int,
         cursor: Long
     ): IDs = withContext(Dispatchers.IO) {
-        twitter.getRetweeterIds(
+        tweets.getRetweeterIds(
             statusId,
             count,
             cursor
@@ -36,48 +35,48 @@ internal class TweetsResourcesImpl(private val twitter: Twitter) : TweetsResourc
     }
 
     override suspend fun showStatus(id: Long): Status = withContext(Dispatchers.IO) {
-        twitter.showStatus(id)
+        tweets.showStatus(id)
     }
 
     override suspend fun destroyStatus(statusId: Long): Status = withContext(Dispatchers.IO) {
-        twitter.destroyStatus(statusId)
+        tweets.destroyStatus(statusId)
     }
 
     override suspend fun updateStatus(status: String): Status = withContext(Dispatchers.IO) {
-        twitter.updateStatus(status)
+        tweets.updateStatus(status)
     }
 
     override suspend fun updateStatus(latestStatus: StatusUpdate): Status =
         withContext(Dispatchers.IO) {
-            twitter.updateStatus(latestStatus)
+            tweets.updateStatus(latestStatus)
         }
 
     override suspend fun retweetStatus(statusId: Long): Status = withContext(Dispatchers.IO) {
-        twitter.retweetStatus(statusId)
+        tweets.retweetStatus(statusId)
     }
 
     override suspend fun unRetweetStatus(statusId: Long): Status = withContext(Dispatchers.IO) {
-        twitter.unRetweetStatus(statusId)
+        tweets.unRetweetStatus(statusId)
     }
 
     override suspend fun getOEmbed(req: OEmbedRequest): OEmbed = withContext(Dispatchers.IO) {
-        twitter.getOEmbed(req)
+        tweets.getOEmbed(req)
     }
 
     override suspend fun lookup(vararg ids: Long): ResponseList<Status> =
         withContext(Dispatchers.IO) {
-            twitter.lookup(*ids)
+            tweets.lookup(*ids)
         }
 
     override suspend fun uploadMedia(mediaFile: File): UploadedMedia = withContext(Dispatchers.IO) {
-        twitter.uploadMedia(mediaFile)
+        tweets.uploadMedia(mediaFile)
     }
 
     override suspend fun uploadMedia(
         fileName: String,
         media: InputStream
     ): UploadedMedia = withContext(Dispatchers.IO) {
-        twitter.uploadMedia(
+        tweets.uploadMedia(
             fileName,
             media
         )
@@ -87,7 +86,7 @@ internal class TweetsResourcesImpl(private val twitter: Twitter) : TweetsResourc
         fileName: String,
         media: InputStream
     ): UploadedMedia = withContext(Dispatchers.IO) {
-        twitter.uploadMediaChunked(
+        tweets.uploadMediaChunked(
             fileName,
             media
         )

@@ -3,17 +3,17 @@ package jp.room417.twitter4kt.v1.api.internal
 import jp.room417.twitter4kt.v1.api.UsersResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import twitter4j.*
+import twitter4j.v1.*
 import java.io.File
 import java.io.InputStream
 
-internal class UsersResourcesImpl(private val twitter: Twitter) : UsersResources {
+internal class UsersResourcesImpl(private val users: twitter4j.v1.UsersResources) : UsersResources {
     override suspend fun getAccountSettings(): AccountSettings = withContext(Dispatchers.IO) {
-        twitter.accountSettings
+        users.accountSettings
     }
 
     override suspend fun verifyCredentials(): User = withContext(Dispatchers.IO) {
-        twitter.verifyCredentials()
+        users.verifyCredentials()
     }
 
     override suspend fun updateAccountSettings(
@@ -24,7 +24,7 @@ internal class UsersResourcesImpl(private val twitter: Twitter) : UsersResources
         timeZone: String,
         lang: String
     ): AccountSettings = withContext(Dispatchers.IO) {
-        twitter.updateAccountSettings(
+        users.updateAccountSettings(
             trendLocationWoeid,
             sleepTimeEnabled,
             startSleepTime,
@@ -35,151 +35,122 @@ internal class UsersResourcesImpl(private val twitter: Twitter) : UsersResources
     }
 
     override suspend fun updateAllowDmsFrom(allowDmsFrom: String): AccountSettings = withContext(Dispatchers.IO) {
-        twitter.updateAllowDmsFrom(allowDmsFrom)
+        users.updateAllowDmsFrom(allowDmsFrom)
     }
 
-    override suspend fun updateProfile(name: String, url: String, location: String, description: String): User =
-        withContext(Dispatchers.IO) {
-            twitter.updateProfile(name, url, location, description)
-        }
-
-    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember", "DEPRECATION")
-    override suspend fun updateProfileBackgroundImage(image: File, tile: Boolean): User = withContext(Dispatchers.IO) {
-        twitter.updateProfileBackgroundImage(image, tile)
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
-    override suspend fun updateProfileBackgroundImage(image: InputStream, tile: Boolean): User =
-        withContext(Dispatchers.IO) {
-            twitter.updateProfileBackgroundImage(image, tile)
-        }
-
-    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember", "DEPRECATION")
-    override suspend fun updateProfileColors(
-        profileBackgroundColor: String,
-        profileTextColor: String,
-        profileLinkColor: String,
-        profileSidebarFillColor: String,
-        profileSidebarBorderColor: String
-    ): User = withContext(Dispatchers.IO) {
-        twitter.updateProfileColors(
-            profileBackgroundColor,
-            profileTextColor,
-            profileLinkColor,
-            profileSidebarFillColor,
-            profileSidebarBorderColor
-        )
+    override suspend fun updateProfile(name: String, url: String, location: String, description: String): User = withContext(Dispatchers.IO) {
+        users.updateProfile(name, url, location, description)
     }
 
     override suspend fun updateProfileImage(image: File): User = withContext(Dispatchers.IO) {
-        twitter.updateProfileImage(image)
+        users.updateProfileImage(image)
     }
 
     override suspend fun updateProfileImage(image: InputStream): User = withContext(Dispatchers.IO) {
-        twitter.updateProfileImage(image)
+        users.updateProfileImage(image)
     }
 
     override suspend fun getBlocksList(): PagableResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.blocksList
+        users.blocksList
     }
 
     override suspend fun getBlocksList(cursor: Long): PagableResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getBlocksList(cursor)
+        users.getBlocksList(cursor)
     }
 
     override suspend fun getBlocksIDs(): IDs = withContext(Dispatchers.IO) {
-        twitter.blocksIDs
+        users.blocksIDs
     }
 
     override suspend fun getBlocksIDs(cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getBlocksIDs(cursor)
+        users.getBlocksIDs(cursor)
     }
 
     override suspend fun createBlock(userId: Long): User = withContext(Dispatchers.IO) {
-        twitter.createBlock(userId)
+        users.createBlock(userId)
     }
 
     override suspend fun createBlock(screenName: String): User = withContext(Dispatchers.IO) {
-        twitter.createBlock(screenName)
+        users.createBlock(screenName)
     }
 
     override suspend fun destroyBlock(userId: Long): User = withContext(Dispatchers.IO) {
-        twitter.destroyBlock(userId)
+        users.destroyBlock(userId)
     }
 
     override suspend fun destroyBlock(screen_name: String): User = withContext(Dispatchers.IO) {
-        twitter.destroyBlock(screen_name)
+        users.destroyBlock(screen_name)
     }
 
     override suspend fun getMutesList(cursor: Long): PagableResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getMutesList(cursor)
+        users.getMutesList(cursor)
     }
 
     override suspend fun getMutesIDs(cursor: Long): IDs = withContext(Dispatchers.IO) {
-        twitter.getMutesIDs(cursor)
+        users.getMutesIDs(cursor)
     }
 
     override suspend fun createMute(userId: Long): User = withContext(Dispatchers.IO) {
-        twitter.createMute(userId)
+        users.createMute(userId)
     }
 
     override suspend fun createMute(screenName: String): User = withContext(Dispatchers.IO) {
-        twitter.createMute(screenName)
+        users.createMute(screenName)
     }
 
     override suspend fun destroyMute(userId: Long): User = withContext(Dispatchers.IO) {
-        twitter.destroyMute(userId)
+        users.destroyMute(userId)
     }
 
     override suspend fun destroyMute(screenName: String): User = withContext(Dispatchers.IO) {
-        twitter.destroyMute(screenName)
+        users.destroyMute(screenName)
     }
 
     override suspend fun lookupUsers(vararg ids: Long): ResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.lookupUsers(*ids)
+        users.lookupUsers(*ids)
     }
 
     override suspend fun lookupUsers(vararg screenNames: String): ResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.lookupUsers(*screenNames)
+        users.lookupUsers(*screenNames)
     }
 
     override suspend fun showUser(userId: Long): User = withContext(Dispatchers.IO) {
-        twitter.showUser(userId)
+        users.showUser(userId)
     }
 
     override suspend fun showUser(screenName: String): User = withContext(Dispatchers.IO) {
-        twitter.showUser(screenName)
+        users.showUser(screenName)
     }
 
     override suspend fun searchUsers(query: String, page: Int): ResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.searchUsers(query, page)
+        users.searchUsers(query, page)
     }
 
     override suspend fun getContributees(userId: Long): ResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getContributees(userId)
+        users.getContributees(userId)
     }
 
     override suspend fun getContributees(screenName: String): ResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getContributees(screenName)
+        users.getContributees(screenName)
     }
 
     override suspend fun getContributors(userId: Long): ResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getContributors(userId)
+        users.getContributors(userId)
     }
 
     override suspend fun getContributors(screenName: String): ResponseList<User> = withContext(Dispatchers.IO) {
-        twitter.getContributors(screenName)
+        users.getContributors(screenName)
     }
 
     override suspend fun removeProfileBanner() = withContext(Dispatchers.IO) {
-        twitter.removeProfileBanner()
+        users.removeProfileBanner()
     }
 
     override suspend fun updateProfileBanner(image: File) = withContext(Dispatchers.IO) {
-        twitter.updateProfileBanner(image)
+        users.updateProfileBanner(image)
     }
 
     override suspend fun updateProfileBanner(image: InputStream) = withContext(Dispatchers.IO) {
-        twitter.updateProfileBanner(image)
+        users.updateProfileBanner(image)
     }
 }
