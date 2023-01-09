@@ -53,10 +53,6 @@ scope.launch {
 
 ## Installation
 
-**NOTE**
-Since `0.1.0`, artifacts will be deployed on Maven Central, and the credentials for GitHub Package Registry will no longer be required.  
-Instead, the group ID will be changed while package names in modules are not modified.
-
 ### Gradle(Groovy)
 #### >= `v0.1.0`
 ```groovy
@@ -65,71 +61,18 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.github.417-72ki:twitter4kt:0.1.1'
-}
-```
-
-#### <= `v0.0.5`
-##### top-level `build.gradle`
-
-```groovy
-allprojects {
-    repositories {
-        ・ ・ ・
-        maven {
-            url 'https://maven.pkg.github.com/417-72KI/Twitter4Kt'
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
-                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
-```
-
-##### `app/build.gradle`
-
-```groovy
-dependencies {
-    implementation 'jp.room417:twitter4kt:0.0.5'
+    implementation 'io.github.417-72ki:twitter4kt:0.2.0'
 }
 ```
 
 ### Gradle(Kotlin)
-#### >= `v0.1.0`
 ```kotlin
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("io.github.417-72ki:twitter4kt:0.1.1")
-}
-```
-
-#### <= `v0.0.5`
-##### top-level `build.gradle.kts`
-
-```kotlin
-allprojects {
-    repositories {
-        ・ ・ ・
-        maven {
-            url = "https://maven.pkg.github.com/417-72KI/Twitter4Kt"
-            credentials {
-                username = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_USER")
-                password = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
-```
-
-##### `app/build.gradle.kts`
-
-```kotlin
-dependencies {
-    implementation("jp.room417:twitter4kt:0.0.5")
+    implementation("io.github.417-72ki:twitter4kt:0.2.0")
 }
 ```
 
