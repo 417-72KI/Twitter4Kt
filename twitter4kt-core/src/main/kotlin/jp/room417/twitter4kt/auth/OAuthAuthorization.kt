@@ -6,7 +6,6 @@ import twitter4j.AccessToken
 import twitter4j.RequestToken
 import twitter4j.TwitterException
 
-
 /** A wrapper of [twitter4j.OAuthAuthorization] */
 @Suppress("unused")
 class OAuthAuthorization(override val auth: twitter4j.OAuthAuthorization) : Authorization {

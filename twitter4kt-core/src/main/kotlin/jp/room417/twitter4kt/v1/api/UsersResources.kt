@@ -33,7 +33,7 @@ interface UsersResources {
     /** A wrapper of [twitter4j.v1.UsersResources.updateProfile] */
     @Throws(TwitterException::class)
     suspend fun updateProfile(name: String, url: String, location: String, description: String): User
-    
+
     /** A wrapper of [twitter4j.v1.UsersResources.updateProfileImage] */
     @Throws(TwitterException::class)
     suspend fun updateProfileImage(image: File): User
