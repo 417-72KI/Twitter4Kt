@@ -17,6 +17,7 @@ interface PlacesGeoResources {
     suspend fun searchPlaces(query: GeoQuery): ResponseList<Place>
 
     /** A wrapper of [twitter4j.api.PlacesGeoResources.getSimilarPlaces] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getSimilarPlaces(
         location: GeoLocation,

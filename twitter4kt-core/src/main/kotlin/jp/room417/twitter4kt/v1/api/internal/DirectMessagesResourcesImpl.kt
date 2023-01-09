@@ -13,14 +13,17 @@ internal class DirectMessagesResourcesImpl(private val twitter: Twitter) : Direc
         twitter.directMessages
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun getDirectMessages(paging: Paging): ResponseList<DirectMessage> = withContext(Dispatchers.IO) {
         twitter.directMessages
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun getSentDirectMessages(): ResponseList<DirectMessage> = withContext(Dispatchers.IO) {
         twitter.sentDirectMessages
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun getSentDirectMessages(paging: Paging): ResponseList<DirectMessage> =
         withContext(Dispatchers.IO) {
             twitter.getSentDirectMessages(paging)

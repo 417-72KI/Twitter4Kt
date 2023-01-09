@@ -34,16 +34,17 @@ interface UsersResources {
     suspend fun updateProfile(name: String, url: String, location: String, description: String): User
 
     /** A wrapper of [twitter4j.api.UsersResources.updateProfileBackgroundImage] */
-    @Deprecated("Since Twitter4J 4.0.7")
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun updateProfileBackgroundImage(image: File, tile: Boolean): User
 
     /** A wrapper of [twitter4j.api.UsersResources.updateProfileBackgroundImage] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun updateProfileBackgroundImage(image: InputStream, tile: Boolean): User
 
     /** A wrapper of [twitter4j.api.UsersResources.updateProfileColors] */
-    @Deprecated("Since Twitter4J 4.0.5")
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun updateProfileColors(
         profileBackgroundColor: String,

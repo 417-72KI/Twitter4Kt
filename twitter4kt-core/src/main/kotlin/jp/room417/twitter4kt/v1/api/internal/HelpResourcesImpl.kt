@@ -10,6 +10,7 @@ import twitter4j.TwitterAPIConfiguration
 import twitter4j.api.HelpResources.Language
 
 internal class HelpResourcesImpl(private val twitter: Twitter) : HelpResources {
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun getAPIConfiguration(): TwitterAPIConfiguration = withContext(Dispatchers.IO) {
         twitter.apiConfiguration
     }
@@ -18,10 +19,12 @@ internal class HelpResourcesImpl(private val twitter: Twitter) : HelpResources {
         twitter.languages
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun getPrivacyPolicy(): String = withContext(Dispatchers.IO) {
         twitter.privacyPolicy
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun getTermsOfService(): String = withContext(Dispatchers.IO) {
         twitter.termsOfService
     }

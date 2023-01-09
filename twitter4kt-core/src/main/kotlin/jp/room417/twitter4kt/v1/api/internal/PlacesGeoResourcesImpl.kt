@@ -18,6 +18,7 @@ internal class PlacesGeoResourcesImpl(private val twitter: Twitter) : PlacesGeoR
         twitter.searchPlaces(query)
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun getSimilarPlaces(
         location: GeoLocation,
         name: String,

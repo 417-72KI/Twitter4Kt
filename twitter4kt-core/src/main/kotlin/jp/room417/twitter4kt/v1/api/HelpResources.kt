@@ -9,6 +9,7 @@ import twitter4j.api.HelpResources.Language
 /** A wrapper of [twitter4j.api.HelpResources] */
 interface HelpResources {
     /** A wrapper of [twitter4j.api.HelpResources.getAPIConfiguration] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getAPIConfiguration(): TwitterAPIConfiguration
 
@@ -17,10 +18,12 @@ interface HelpResources {
     suspend fun getLanguages(): ResponseList<Language>
 
     /** A wrapper of [twitter4j.api.HelpResources.getPrivacyPolicy] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getPrivacyPolicy(): String
 
     /** A wrapper of [twitter4j.api.HelpResources.getTermsOfService] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getTermsOfService(): String
 

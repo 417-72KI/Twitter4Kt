@@ -1,5 +1,3 @@
-@file:Suppress("OVERRIDE_DEPRECATION", "DEPRECATION", "OverridingDeprecatedMember")
-
 package jp.room417.twitter4kt.v1.api.internal
 
 import jp.room417.twitter4kt.v1.api.UsersResources
@@ -45,15 +43,18 @@ internal class UsersResourcesImpl(private val twitter: Twitter) : UsersResources
             twitter.updateProfile(name, url, location, description)
         }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember", "DEPRECATION")
     override suspend fun updateProfileBackgroundImage(image: File, tile: Boolean): User = withContext(Dispatchers.IO) {
         twitter.updateProfileBackgroundImage(image, tile)
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember")
     override suspend fun updateProfileBackgroundImage(image: InputStream, tile: Boolean): User =
         withContext(Dispatchers.IO) {
             twitter.updateProfileBackgroundImage(image, tile)
         }
 
+    @Suppress("OVERRIDE_DEPRECATION", "OverridingDeprecatedMember", "DEPRECATION")
     override suspend fun updateProfileColors(
         profileBackgroundColor: String,
         profileTextColor: String,

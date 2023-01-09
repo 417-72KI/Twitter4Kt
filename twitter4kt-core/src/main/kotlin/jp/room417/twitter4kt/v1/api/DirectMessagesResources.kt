@@ -6,18 +6,22 @@ import java.io.InputStream
 /** A wrapper of [twitter4j.api.DirectMessagesResources] */
 interface DirectMessagesResources {
     /** A wrapper of [twitter4j.api.DirectMessagesResources.getDirectMessages] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getDirectMessages(): ResponseList<DirectMessage>
 
     /** A wrapper of [twitter4j.api.DirectMessagesResources.getDirectMessages] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getDirectMessages(paging: Paging): ResponseList<DirectMessage>
 
     /** A wrapper of [twitter4j.api.DirectMessagesResources.getSentDirectMessages] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getSentDirectMessages(): ResponseList<DirectMessage>
 
     /** A wrapper of [twitter4j.api.DirectMessagesResources.getSentDirectMessages] */
+    @Deprecated(message = "Will be removed on Twitter4J 4.1.0")
     @Throws(TwitterException::class)
     suspend fun getSentDirectMessages(paging: Paging): ResponseList<DirectMessage>
 
