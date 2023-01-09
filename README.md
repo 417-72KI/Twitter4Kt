@@ -61,7 +61,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.github.417-72ki:twitter4kt:0.2.0'
+    implementation 'io.github.417-72ki:twitter4kt:0.2.1'
 }
 ```
 
@@ -72,7 +72,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.417-72ki:twitter4kt:0.2.0")
+    implementation("io.github.417-72ki:twitter4kt:0.2.1")
 }
 ```
 
